@@ -10,13 +10,33 @@ A Flutter package to generate localized relative dates to show differences in ti
 
 ## How it works
 
+The `RelativeDateTime` takes two `DateTime` objects and calculates the difference in time of both dates. This relative time difference is
+then used for localizing and formatting the expression in human-readible format.
+
 ## How to use
+
+First the delegates and supported locales should be declared on your `MaterialApp` to enable localization for your app:
+
+```dart
+localizationsDelegates: [
+  GlobalMaterialLocalizations.delegate,
+  GlobalWidgetsLocalizations.delegate,
+  GlobalCupertinoLocalizations.delegate,
+],
+// Set the supported locales according to the localizations you have
+// implmented on your application.
+supportedLocales: [
+  const Locale('en'), // English, no country code
+  const Locale('de'), // German, no country code
+  const Locale('ru'), // Russian, no country code
+],
+```
 
 To display localized and formatted dates relative to another date in human-readible format, first there has to be a `RelativeDateTime` object created:
 
 ```dart
-RelativeDateTime _relativeDateTime =
-    RelativeDateTime(dateTime: DateTime.now(), other: _otherDateTime);
+    RelativeDateTime _relativeDateTime =
+        RelativeDateTime(dateTime: DateTime.now(), other: _otherDateTime);
 ```
 
 Next the `RelativeDateFormat` object can be initialized. It will enable formatting the previously
