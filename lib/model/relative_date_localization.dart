@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
 
-/// Model class to describe all required data required for localizing the formatted
+/// Model class to describe all data required for localizing the formatted
 /// [RelativeDateTime].
 class RelativeDateLocalization {
   final String languageCode;
@@ -32,6 +32,46 @@ class RelativeDateLocalization {
   /// ```dart
   /// timeUnitsPlural: ['seconds', 'minutes', 'hours', 'days', 'years'],
   /// ```
+  ///
+  /// * [prepositionPast] is the preposition to be displayed on relative dates in the past.
+  /// The default English localization will be set to:
+  /// ```dart
+  /// prepositionPast: 'ago',
+  /// ```
+  ///
+  /// * [prepositionFuture] is the preposition to be displayed on relative dates in the future.
+  /// The default English localization will be set to:
+  /// ```dart
+  /// prepositionFuture: 'in',
+  /// ```
+  ///
+  /// * [atTheMoment] is the localized string displayed if no difference in time can be measured.
+  /// The default English localization will be set to:
+  /// ```dart
+  /// atTheMoment: 'now',
+  /// ```
+  ///
+  /// * [formatOrderPast] describes the order in which the preposition, the value and the unit
+  /// shall be displayed on the formatted string describing a date in the past.
+  /// The default English localization will be set to:
+  /// ```dart
+  /// formatOrderPast: [
+  ///    FormatComponent.value,
+  ///    FormatComponent.unit,
+  ///    FormatComponent.preposition
+  /// ],
+  /// ```
+  ///
+  /// * [formatOrderFuture] describes the order in which the preposition, the value and the unit
+  /// shall be displayed on the formatted string describing a date in the future.
+  /// The default English localization will be set to:
+  /// ```dart
+  /// formatOrderFuture: [
+  ///    FormatComponent.preposition,
+  ///    FormatComponent.value,
+  ///    FormatComponent.unit,
+  /// ],
+  /// ```
   const RelativeDateLocalization({
     @required this.languageCode,
     @required this.timeUnitsSingular,
@@ -44,8 +84,12 @@ class RelativeDateLocalization {
   });
 }
 
+/// The sections of the formatted string
 enum FormatComponent {
+  // The preposition to indicate whether the date is in the past or the future.
   preposition,
+  // The time value.
   value,
+  // The time unit.
   unit,
 }

@@ -1,6 +1,6 @@
 # Lit Relative Date Time
 
-A Flutter package to generate localized relative dates to show differences in time.
+A Flutter package to generate localized relative dates to show differences in time in human-readible format.
 
 ## Screenshots
 
@@ -11,6 +11,60 @@ A Flutter package to generate localized relative dates to show differences in ti
 ## How it works
 
 ## How to use
+
+To display localized and formatted dates relative to another date in human-readible format, first there has to be a `RelativeDateTime` object created:
+
+```dart
+RelativeDateTime _relativeDateTime =
+    RelativeDateTime(dateTime: DateTime.now(), other: _otherDateTime);
+```
+
+Next the `RelativeDateFormat` object can be initialized. It will enable formatting the previously
+created `RelativeDateTime`:
+
+```dart
+RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
+    Localizations.localeOf(context),
+);
+```
+
+If you want to provide your own Localizations, you can do so by passing the optional `localizations`
+argument, which contains a list of localization objects:
+
+```dart
+RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
+      Localizations.localeOf(context),
+      localizations: [
+        RelativeDateLocalization(
+          languageCode: 'en',
+          timeUnitsSingular: ['second', 'minute', 'hour', 'day', 'year'],
+          timeUnitsPlural: ['seconds', 'minutes', 'hours', 'days', 'years'],
+          prepositionPast: 'ago',
+          prepositionFuture: 'in',
+          atTheMoment: 'now',
+          formatOrderPast: [
+            FormatComponent.value,
+            FormatComponent.unit,
+            FormatComponent.preposition
+          ],
+          formatOrderFuture: [
+            FormatComponent.preposition,
+            FormatComponent.value,
+            FormatComponent.unit,
+          ],
+        )
+      ],
+    );
+```
+
+Now the `RelativeDateFormat`'s `format()` method can be called, which takes the `RelativeDateTime` as
+an argument in order to format the `RelativeDateTime` to display the string on e.g. a `Text` widget:
+
+```dart
+Text(relativeDateFormatter.format(relativeDateTime))
+```
+
+The Example app can provided further details on implementing relative dates.
 
 ## Getting Started
 

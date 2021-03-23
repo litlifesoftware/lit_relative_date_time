@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
-import 'package:lit_relative_date_time/localization/relative_date_time_controller.dart';
+import 'package:lit_relative_date_time/controller/relative_date_time_controller.dart';
 
 /// Controller class to calculate a [TimeDifference] based on two comparable [DateTime] objects.
 ///
@@ -25,10 +25,12 @@ class RelativeDateTime {
     return controller.calculateTimeDifference();
   }
 
+  /// States whether the dates are approximating each other to much to measure a valid [TimeDifference].
   bool get isNow {
     return timeDifference.isZero && timeDifference.isSmallestUnit;
   }
 
+  /// States whether the [other] date time is in the past.
   bool get isPast {
     return timeDifference.value > 0;
   }

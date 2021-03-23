@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
 
-/// Controller class to localize relative time stamps using the provided [Locale] and
-/// [TimeDifference].
+/// [RelativeDateFormat] localizes relative time stamps using the provided [Locale].
 ///
-/// Following languages are supported at the moment:
+/// Following languages are supported by default at the moment:
 /// * English
 /// * German
 /// * Russian
@@ -15,28 +14,35 @@ class RelativeDateFormat {
   /// The device [Locale] on which the localized string will be based on.
   final Locale locale;
 
-  /// The relative date information.
-  //final RelativeDateTime relativeDateTime;
+  /// The localizations available for formatting.
   final List<RelativeDateLocalization> localizations;
+
+  final bool debug;
 
   /// Creates a [RelativeDateFormat].
   ///
-  /// Provide a [TimeDifference] and a [Locale] to return a localized description of the [TimeDifference]
-  /// in human-readable form using the [format] property.
+  /// Provide a [Locale] for localizing a [RelativeDateTime] and formatting it into a
+  /// human-readable string.
   const RelativeDateFormat(
     this.locale, {
     this.localizations = formatLocalizations,
-  }
-      //this.relativeDateTime,
-      );
+    this.debug = false,
+  });
 
+  /// Gets the localization to be applied to the formatted string by searching the for it
+  /// in the [localizations] list.
   RelativeDateLocalization _getLocalization() {
     try {
-      return localizations
-          .firstWhere((loc) => loc.languageCode == locale.languageCode);
+      return localizations.firstWhere((RelativeDateLocalization localization) {
+        return localization.languageCode == locale.languageCode;
+      });
+      // If the provided list does not contain the current locale's localization,
+      // return the default localization.
     } catch (e) {
-      print("Error: $e");
-      return localizationsEN;
+      if (debug) {
+        print("Error: $e");
+      }
+      return defaultLocalization;
     }
   }
 
@@ -45,60 +51,11 @@ class RelativeDateFormat {
     return relativeDateTime.timeDifference.isSingular;
   }
 
-  // String get _localizedPrepositionPast {
-  //   return RelativeDateLocalizations
-  //       .prepositionsPastLocalizations[locale.languageCode];
-  // }
-
-  // String _getLocalizedPrepositionPast(
-  //   RelativeDateLocalization relativeDateLocalization,
-  // ) {
-  //   return
-  //       // RelativeDateLocalizations
-  //       //     .prepositionsPastLocalizations[locale.languageCode];
-  //       relativeDateLocalization.prepositionPast;
-  // }
-
-  // String get _localizedPrepositionFuture {
-  //   return RelativeDateLocalizations
-  //       .prepositionsFutureLocalization[locale.languageCode];
-  // }
-  // String _getLocalizedPrepositionFuture(
-  //   RelativeDateLocalization relativeDateLocalization,
-  // ) {
-  //   return relativeDateLocalization.prepositionFuture;
-  // }
-
-  // String get _localizedNow {
-  //   return RelativeDateLocalizations.nowLocalizations[locale.languageCode];
-  // }
-
-  // String _getLocalizedNow(
-  //   RelativeDateLocalization relativeDateLocalization,
-  // ) {
-  //   return relativeDateLocalization.atTheMoment;
-  // }
-
-  // String _getLocalizedTimeValue(
-  //     Locale locale, RelativeDateTime relativeDateTime) {
-  //   String _localizedSingularValue = RelativeDateLocalizations
-  //       .localizedTimeValueSingular[locale.languageCode];
-  //   return _isSingular(relativeDateTime)
-  //       ? _localizedSingularValue
-  //       : "${relativeDateTime.timeDifference.value.abs()}";
-  // }
-
-  String _getLocalizedTimeValue(
-    Locale locale,
+  /// Returns the absolute time value.
+  String _getTimeValue(
     RelativeDateTime relativeDateTime,
     RelativeDateLocalization relativeDateLocalization,
   ) {
-    // String _localizedSingularValue = RelativeDateLocalizations
-    //     .localizedTimeValueSingular[locale.languageCode];
-    // String _singularValue = relativeDateLocalization.timeValueSingular;
-    // return _isSingular(relativeDateTime) && displaySingularValueAsWord
-    //     ? _singularValue
-    //     : "${relativeDateTime.timeDifference.value.abs()}";
     return "${relativeDateTime.timeDifference.value.abs()}";
   }
 
@@ -108,55 +65,51 @@ class RelativeDateFormat {
     RelativeDateTime relativeDateTime,
     RelativeDateLocalization relativeDateLocalization,
   ) {
-    // List<String> _timeUnitsSingular = RelativeDateLocalizations
-    //     .timeUnitsSingularLocalizations[locale.languageCode];
     List<String> _timeUnitsSingular =
         relativeDateLocalization.timeUnitsSingular;
-    // List<String> _timeUnitsPlural = RelativeDateLocalizations
-    //     .timeUnitsPluralLocalization[locale.languageCode];
     List<String> _timeUnitsPlural = relativeDateLocalization.timeUnitsPlural;
 
+    /// Return the corresponding localized unit depending on its time value.
     switch (relativeDateTime.timeDifference.unit) {
       case LitTimeUnit.second:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[0]
             : _timeUnitsPlural[0];
-
         break;
+
       case LitTimeUnit.minute:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[1]
             : _timeUnitsPlural[1];
-
         break;
+
       case LitTimeUnit.hour:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[2]
             : _timeUnitsPlural[2];
-
         break;
+
       case LitTimeUnit.day:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[3]
             : _timeUnitsPlural[3];
-
         break;
+
       default:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[4]
             : _timeUnitsPlural[4];
-
         break;
     }
   }
 
-  /// Returns a localized [String] describing the [TimeDifference] in human-readable
+  /// Returns a localized [String] formatting the [RelativeDateTime] in human-readable
   /// form.
   ///
-  /// Providing a [TimeDifference] whose time unit is 'second' and its value is 3 might
-  /// return **3 seconds ago** on default.
+  /// Providing a [RelativeDateTime] whose time unit is 'second' and its value is 3 might
+  /// return **3 seconds ago** on English Locale.
   ///
-  /// Following units can be display for the decription
+  /// Following units can be display for formatting:
   /// * Seconds
   /// * Minutes
   /// * Hours
@@ -164,8 +117,7 @@ class RelativeDateFormat {
   String format(RelativeDateTime relativeDateTime) {
     RelativeDateLocalization _localization = _getLocalization();
     //String timeValue = _getLocalizedTimeValue(locale, relativeDateTime);
-    String timeValue = _getLocalizedTimeValue(
-      locale,
+    String timeValue = _getTimeValue(
       relativeDateTime,
       _localization,
     );
@@ -175,41 +127,16 @@ class RelativeDateFormat {
       _localization,
     );
 
-    // String _localizedPrepositionPast =
-    //     _getLocalizedPrepositionPast(_localization);
-    // String _localizedPrepositionFuture =
-    //     _getLocalizedPrepositionFuture(_localization);
-    //print(locale);
-    //String _localizedNow = _getLocalizedNow(_localization);
+    const String packageName = "LitRelativeDateTime";
 
+    // If the difference in time is less than one second, return the localized string for
+    // 'at the moment/now' due to the dates being too close to each other.
     if (relativeDateTime.isNow) {
       return "${_localization.atTheMoment}";
     } else {
       List<String> _words = List<String>();
-      // // German localization
-      // if (locale.languageCode == 'de') {
-      //   if (relativeDateTime.isPast) {
-      //     return "$_localizedPrepositionPast $timeValue $timeUnit";
-      //   } else {
-      //     return "$_localizedPrepositionFuture $timeValue $timeUnit";
-      //   }
-      // }
-
-      // // Russian localization
-      // if (locale.languageCode == 'ru') {
-      //   if (relativeDateTime.isPast) {
-      //     return "$timeValue $timeUnit $_localizedPrepositionPast";
-      //   } else {
-      //     return "$_localizedPrepositionFuture $timeValue $timeUnit";
-      //   }
-      // }
-
-      // // Returns the default localization (EN/US)
-      // if (relativeDateTime.isPast) {
-      //   return "$timeValue $timeUnit $_localizedPrepositionPast";
-      // } else {
-      //   return "$_localizedPrepositionFuture $timeValue $timeUnit";
-      // }
+      // If the relative date time does describe a date in the past, return the formatting
+      // for past dates.
       if (relativeDateTime.isPast) {
         for (int i = 0; i < _localization.formatOrderPast.length; i++) {
           try {
@@ -224,10 +151,15 @@ class RelativeDateFormat {
               _words.add(timeUnit);
             }
           } catch (e) {
-            print(
-                "LitRelativeDateTime: Error on formatting prepositionPast array. Please check your localization configuration.");
+            if (debug) {
+              const String errorMessage =
+                  "ERROR on formatting prepositionPast array. Please check your localization configuration.";
+              print("$packageName: $errorMessage");
+              _words.add(errorMessage);
+            }
           }
         }
+        // Else return the formatting for future dates.
       } else {
         try {
           for (int i = 0; i < _localization.formatOrderFuture.length; i++) {
@@ -243,16 +175,25 @@ class RelativeDateFormat {
             }
           }
         } catch (e) {
-          print(
-              "LitRelativeDateTime: Error on formatting prepositionFuture array. Please check your localization configuration.");
+          const String errorMessage =
+              "Error on formatting prepositionFuture array. Please check your localization configuration.";
+          if (debug) {
+            print("$packageName: $errorMessage");
+          }
+          _words.add(errorMessage);
         }
       }
+      // Try to return the compound words.
       try {
         return "${_words[0]} ${_words[1]} ${_words[2]}";
+        // If it does fail, return an error message.
       } catch (e) {
-        print(
-            "LitRelativeDate: Error on formatting date: Please check your localization config");
-        return "ERROR";
+        const String errorMessage =
+            "Error on formatting date: Please check your localization config";
+        if (debug) {
+          print("$packageName: $errorMessage");
+        }
+        return errorMessage;
       }
     }
   }

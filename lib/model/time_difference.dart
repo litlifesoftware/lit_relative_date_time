@@ -26,10 +26,13 @@ class TimeDifference {
     @required this.unit,
   });
 
+  /// States whether the [TimeDifference]'unit contains the smallest value available (second).
   bool get isSmallestUnit {
     return unit == LitTimeUnit.second;
   }
 
+  /// States wheter the [TimeDifference]'s value is zero. If so, the difference is invalid
+  /// and cannot be used for measuring accurate relative dates.
   bool get isZero {
     return value == 0;
   }

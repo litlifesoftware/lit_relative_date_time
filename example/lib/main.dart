@@ -11,36 +11,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: 'Lit Relative Date Time Demo',
+      // Set the localization delegates you want to use.
       localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
-        // TODO: uncomment the line below after codegen
-        // AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // Set the supported locales according to the localizations you have
+      // implmented on your application.
       supportedLocales: [
         const Locale('en'), // English, no country code
         const Locale('de'), // German, no country code
-        const Locale('ru'), // Chinese *See Advanced Locales below*
-        // ... other locales the app supports
+        const Locale('ru'), // Russian, no country code
       ],
       home: MyHomePage(),
     );
@@ -57,15 +40,30 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   DateTime _lastPressed;
 
-  RelativeDateTime get _relativeDateTime {
-    return RelativeDateTime(dateTime: DateTime.now(), other: _lastPressed);
+  /// Get a relative date using the current [DateTime] and the [DateTime] the
+  /// button has been pressed the last.
+  RelativeDateTime get relativeDateTime {
+    RelativeDateTime _relativeDateTime =
+        RelativeDateTime(dateTime: DateTime.now(), other: _lastPressed);
+    return _relativeDateTime;
   }
 
+  /// Get a formatted and localized date time in human-readible format.
+  RelativeDateFormat get relativeDateFormatter {
+    RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
+      Localizations.localeOf(context),
+    );
+    return _relativeDateFormatter;
+  }
+
+  /// Reset the [_lastPressed] date time and start the animation.
   void _onPressed() {
     setState(() {
       _lastPressed = DateTime.now();
     });
-    _animationController.repeat(reverse: true);
+    if (!_animationController.isAnimating) {
+      _animationController.repeat(reverse: true);
+    }
   }
 
   @override
@@ -117,9 +115,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     _lastPressed != null
-                        ? RelativeDateFormat(
-                            Localizations.localeOf(context),
-                          ).format(_relativeDateTime)
+                        ? relativeDateFormatter.format(relativeDateTime)
                         : "Not Pressed Yet",
                     textAlign: TextAlign.end,
                   ),

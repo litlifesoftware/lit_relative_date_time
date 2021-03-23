@@ -78,6 +78,9 @@ const RelativeDateLocalization localizationsRU = RelativeDateLocalization(
   ],
 );
 
+// Default localization (eng)
+const RelativeDateLocalization defaultLocalization = localizationsEN;
+
 /// Default localizations for formatting.
 const List<RelativeDateLocalization> formatLocalizations = [
   localizationsEN,
