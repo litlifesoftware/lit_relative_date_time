@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:lit_relative_date_time/lit_relative_date_time.dart';
 
 /// Model class to describe all data required for localizing the formatted
 /// [RelativeDateTime].

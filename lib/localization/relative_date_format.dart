@@ -134,7 +134,7 @@ class RelativeDateFormat {
     if (relativeDateTime.isNow) {
       return "${_localization.atTheMoment}";
     } else {
-      List<String> _words = List<String>();
+      List<String> _words = [];
       // If the relative date time does describe a date in the past, return the formatting
       // for past dates.
       if (relativeDateTime.isPast) {

@@ -1,6 +1,6 @@
 # Lit Relative Date Time
 
-A Flutter package to generate localized relative dates to show differences in time in human-readible format.
+A Flutter package to generate relative dates to show differences in time in localized and	human-readable format.
 
 ## Screenshots
 
@@ -11,7 +11,7 @@ A Flutter package to generate localized relative dates to show differences in ti
 ## How it works
 
 The `RelativeDateTime` takes two `DateTime` objects and calculates the difference in time of both dates. This relative time difference is
-then used for localizing and formatting the expression in human-readible format.
+then used for localizing and formatting the expression in human-readable format.
 
 ## How to use
 
@@ -32,7 +32,7 @@ supportedLocales: [
 ],
 ```
 
-To display localized and formatted dates relative to another date in human-readible format, first there has to be a `RelativeDateTime` object created:
+To display localized and formatted dates relative to another date in human-readable format, first a `RelativeDateTime` object should be created:
 
 ```dart
     RelativeDateTime _relativeDateTime =
@@ -49,7 +49,7 @@ RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
 ```
 
 If you want to provide your own Localizations, you can do so by passing the optional `localizations`
-argument, which contains a list of localization objects:
+argument, which contains a list of `RelativeDateLocalization` objects:
 
 ```dart
 RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
@@ -84,14 +84,9 @@ an argument in order to format the `RelativeDateTime` to display the string on e
 Text(relativeDateFormatter.format(relativeDateTime))
 ```
 
-The Example app can provided further details on implementing relative dates.
+The Example app can provide further details on implementing relative dates.
 
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Getting Started with Flutter
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,

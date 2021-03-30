@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return _relativeDateTime;
   }
 
-  /// Get a formatted and localized date time in human-readible format.
+  /// Get a formatted and localized date time in human-readable format.
   RelativeDateFormat get relativeDateFormatter {
     RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
       Localizations.localeOf(context),
