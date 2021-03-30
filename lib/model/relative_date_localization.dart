@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 /// Model class to describe all data required for localizing the formatted
 /// [RelativeDateTime].
 class RelativeDateLocalization {
@@ -72,14 +70,14 @@ class RelativeDateLocalization {
   /// ],
   /// ```
   const RelativeDateLocalization({
-    @required this.languageCode,
-    @required this.timeUnitsSingular,
-    @required this.timeUnitsPlural,
-    @required this.prepositionPast,
-    @required this.prepositionFuture,
-    @required this.atTheMoment,
-    @required this.formatOrderPast,
-    @required this.formatOrderFuture,
+    required this.languageCode,
+    required this.timeUnitsSingular,
+    required this.timeUnitsPlural,
+    required this.prepositionPast,
+    required this.prepositionFuture,
+    required this.atTheMoment,
+    required this.formatOrderPast,
+    required this.formatOrderFuture,
   });
 }
 

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
 import 'package:lit_relative_date_time/controller/relative_date_time_controller.dart';
 
@@ -14,8 +13,8 @@ class RelativeDateTime {
   ///
   /// Ensure to provide two comparable [DateTime] objects.
   RelativeDateTime({
-    @required this.dateTime,
-    @required this.other,
+    required this.dateTime,
+    required this.other,
   });
 
   /// Returns the calculated [TimeDifference].

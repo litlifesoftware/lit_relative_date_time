@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// @dart = 2.8
+
 
 /// A Flutter package to generate relative dates to show differences in time in localized and human-readable format.
 ///

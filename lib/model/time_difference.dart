@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:lit_relative_date_time/model/lit_time_unit.dart';
 
 /// A model class to describe a relative date time based on the largest [TimeUnit]
@@ -22,8 +21,8 @@ class TimeDifference {
   ///
   /// * [unit] is the time unit of the date.
   const TimeDifference({
-    @required this.value,
-    @required this.unit,
+    required this.value,
+    required this.unit,
   });
 
   /// States whether the [TimeDifference]'unit contains the smallest value available (second).

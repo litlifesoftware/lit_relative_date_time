@@ -75,31 +75,26 @@ class RelativeDateFormat {
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[0]
             : _timeUnitsPlural[0];
-        break;
 
       case LitTimeUnit.minute:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[1]
             : _timeUnitsPlural[1];
-        break;
 
       case LitTimeUnit.hour:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[2]
             : _timeUnitsPlural[2];
-        break;
 
       case LitTimeUnit.day:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[3]
             : _timeUnitsPlural[3];
-        break;
 
       default:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[4]
             : _timeUnitsPlural[4];
-        break;
     }
   }
 
