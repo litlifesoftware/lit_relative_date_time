@@ -4,7 +4,7 @@
 
 // @dart = 2.8
 
-/// A Flutter package to generate localized relative dates to show differences in time in human-readable format.
+/// A Flutter package to generate relative dates to show differences in time in localized and human-readable format.
 ///
 ///
 /// To use, import `package:lit_relative_date_time/lit_relative_date_time.dart`.
