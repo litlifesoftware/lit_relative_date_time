@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
 import 'package:lit_relative_date_time/localizations.dart';
 
-/// [RelativeDateFormat] localizes relative time stamps using the provided [Locale].
+/// [RelativeDateFormat] localizes relative time stamps using the provided
+/// [Locale].
 ///
 /// Following languages are supported by default at the moment:
-/// * English
-/// * German
-/// * Russian
+/// * `English`
+/// * `German`
+/// * `Russian`
 ///
-/// If the passed [Locale] can not be applied to the supported localized strings, the
-/// English localization will be returned instead.
+/// If the provided [Locale] can not be applied to the supported localizations,
+/// the default localization will be returned instead.
 class RelativeDateFormat {
   /// The device [Locale] on which the localized string will be based on.
   final Locale locale;
@@ -18,20 +19,21 @@ class RelativeDateFormat {
   /// The localizations available for formatting.
   final List<RelativeDateLocalization> localizations;
 
+  /// States whether to print `debug` output.
   final bool debug;
 
   /// Creates a [RelativeDateFormat].
   ///
-  /// Provide a [Locale] for localizing a [RelativeDateTime] and formatting it into a
-  /// human-readable string.
+  /// Provide a [Locale] for localizing a [RelativeDateTime].
+  ///
   const RelativeDateFormat(
     this.locale, {
     this.localizations = formatLocalizations,
     this.debug = false,
   });
 
-  /// Gets the localization to be applied to the formatted string by searching the for it
-  /// in the [localizations] list.
+  /// Tries to return the desired localization or the default localization if
+  /// not found.
   RelativeDateLocalization _getLocalization() {
     try {
       return localizations.firstWhere((RelativeDateLocalization localization) {
@@ -47,7 +49,8 @@ class RelativeDateFormat {
     }
   }
 
-  /// States whether to localized the corresponding [TimeDifference]'s time unit in singular form.
+  /// States whether the provided [RelativeDateTime] should have a singular
+  /// time unit.
   bool _isSingular(RelativeDateTime relativeDateTime) {
     return relativeDateTime.timeDifference.isSingular;
   }
@@ -60,7 +63,7 @@ class RelativeDateFormat {
     return "${relativeDateTime.timeDifference.value.abs()}";
   }
 
-  /// Returns the localized time unit based on the [Locale] parameter value.
+  /// Returns the localized time unit based on the [Locale] value.
   String _getLocalizedTimeUnit(
     Locale locale,
     RelativeDateTime relativeDateTime,
@@ -99,34 +102,34 @@ class RelativeDateFormat {
     }
   }
 
-  /// Returns a localized [String] formatting the [RelativeDateTime] in human-readable
-  /// form.
+  /// Returns a localized [String] formatting the [RelativeDateTime] in
+  /// human-readable form.
   ///
-  /// Providing a [RelativeDateTime] whose time unit is 'second' and its value is 3 might
-  /// return **3 seconds ago** on English Locale.
+  /// Providing a [RelativeDateTime] whose time unit is 'second' and its value
+  /// is 3 might return **3 seconds ago** on English Locale.
   ///
   /// Following units can be display for formatting:
-  /// * Seconds
-  /// * Minutes
-  /// * Hours
-  /// * Years
+  /// * `Seconds`
+  /// * `Minutes`
+  /// * `Hours`
+  /// * `Years`
   String format(RelativeDateTime relativeDateTime) {
     RelativeDateLocalization _localization = _getLocalization();
-    //String timeValue = _getLocalizedTimeValue(locale, relativeDateTime);
+
     String timeValue = _getTimeValue(
       relativeDateTime,
       _localization,
     );
+
     String timeUnit = _getLocalizedTimeUnit(
       locale,
       relativeDateTime,
       _localization,
     );
 
-    const String packageName = "LitRelativeDateTime";
-
-    // If the difference in time is less than one second, return the localized string for
-    // 'at the moment/now' due to the dates being too close to each other.
+    // If the difference in time is less than one second, return the localized
+    // string for 'at the moment/now' due to the dates being too close to each
+    // other.
     if (relativeDateTime.isNow) {
       return "${_localization.atTheMoment}";
     } else {
@@ -150,7 +153,7 @@ class RelativeDateFormat {
             if (debug) {
               const String errorMessage =
                   "ERROR on formatting prepositionPast array. Please check your localization configuration.";
-              print("$packageName: $errorMessage");
+              print("$PACKAGE_NAME: $errorMessage");
               _words.add(errorMessage);
             }
           }
@@ -174,7 +177,7 @@ class RelativeDateFormat {
           const String errorMessage =
               "Error on formatting prepositionFuture array. Please check your localization configuration.";
           if (debug) {
-            print("$packageName: $errorMessage");
+            print("$PACKAGE_NAME: $errorMessage");
           }
           _words.add(errorMessage);
         }
@@ -187,7 +190,7 @@ class RelativeDateFormat {
         const String errorMessage =
             "Error on formatting date: Please check your localization config";
         if (debug) {
-          print("$packageName: $errorMessage");
+          print("$PACKAGE_NAME: $errorMessage");
         }
         return errorMessage;
       }

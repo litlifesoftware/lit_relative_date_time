@@ -1,19 +1,20 @@
 import 'package:lit_relative_date_time/data.dart';
 import 'package:lit_relative_date_time/models.dart';
 
-/// A controller class to calculate which time unit is the closest to the canceled
-/// difference of the provided [DateTime] objects.
+/// A `controller` class to calculate custom differences in time of two
+/// provided [DateTime] objects.
+///
 class RelativeDateTimeController {
   final DateTime dateTime;
   final DateTime other;
 
   /// Creates a [RelativeDateTimeController].
   ///
-  /// [dateTime] and [other] are the dates times that are set relative to each other.
+  /// [dateTime] and [other] are the dates times that are set relative to each
+  /// other.
   const RelativeDateTimeController(this.dateTime, this.other);
 
-  /// Calculates the difference in time and returns a [TimeDifference] containing the
-  /// final result including its time unit.
+  /// Calculates the difference in time and returns a [TimeDifference].
   TimeDifference calculateTimeDifference() {
     /// The difference of both date times. The difference may be negative.
     int differenceInMs = dateTime.difference(other).inMilliseconds;

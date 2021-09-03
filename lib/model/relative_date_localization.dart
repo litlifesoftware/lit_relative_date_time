@@ -1,5 +1,5 @@
-/// Model class to describe all data required for localizing the formatted
-/// [RelativeDateTime].
+/// A `model` class describing all data required for localizing a
+/// `RelativeDateTime`.
 class RelativeDateLocalization {
   final String languageCode;
   final List<String> timeUnitsSingular;

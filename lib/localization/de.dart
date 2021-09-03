@@ -1,6 +1,6 @@
 import 'package:lit_relative_date_time/models.dart';
 
-/// German localization
+/// `German` localization
 const RelativeDateLocalization localizationsGER = RelativeDateLocalization(
   languageCode: 'de',
   timeUnitsSingular: ['Sekunde', 'Minute', 'Stunde', 'Tag', 'Jahr'],

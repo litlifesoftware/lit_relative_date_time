@@ -1,21 +1,20 @@
-/// A collection of time units available varying amounts of time Simplifies the localized
-/// string value.
+/// A collection of all available time units.
 enum LitTimeUnit {
-  /// A second contains [msPerSecond]ms.
+  /// A second
   second,
 
-  /// A minute contains [msPerMinute]ms.
+  /// A minute
   minute,
 
-  /// An hour contains [msPerHour]ms.
+  /// An hour
   hour,
 
-  /// An hour contains [msPerDay]ms.
+  /// An hour
   day,
 
-  /// A month contains [msPerMonth]ms.
+  /// A month
   month,
 
-  /// A year contains [msPerDay]ms.
+  /// A year
   year,
 }
