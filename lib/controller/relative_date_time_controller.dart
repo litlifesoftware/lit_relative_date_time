@@ -1,4 +1,5 @@
-import 'package:lit_relative_date_time/lit_relative_date_time.dart';
+import 'package:lit_relative_date_time/data.dart';
+import 'package:lit_relative_date_time/models.dart';
 
 /// A controller class to calculate which time unit is the closest to the canceled
 /// difference of the provided [DateTime] objects.

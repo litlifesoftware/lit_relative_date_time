@@ -1,4 +1,4 @@
-import 'package:lit_relative_date_time/model/lit_time_unit.dart';
+import 'package:lit_relative_date_time/models.dart';
 
 /// A model class to describe a relative date time based on the largest [TimeUnit]
 /// available and its difference relative to another date.

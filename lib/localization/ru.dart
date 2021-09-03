@@ -1,4 +1,4 @@
-import 'package:lit_relative_date_time/model/relative_date_localization.dart';
+import 'package:lit_relative_date_time/models.dart';
 
 /// Russian localization
 const RelativeDateLocalization localizationsRU = RelativeDateLocalization(
@@ -7,7 +7,7 @@ const RelativeDateLocalization localizationsRU = RelativeDateLocalization(
   timeUnitsPlural: ['секунды', 'минуты', 'часа', 'дня', 'года'],
   prepositionPast: 'назад',
   prepositionFuture: 'через',
-  atTheMoment: 'Сейчас же',
+  atTheMoment: 'Сейчас',
   formatOrderPast: [
     FormatComponent.value,
     FormatComponent.unit,

@@ -2,5 +2,6 @@
 library models;
 
 export 'model/lit_time_unit.dart';
+export 'model/relative_date_localization.dart';
 export 'model/relative_date_time.dart';
 export 'model/time_difference.dart';

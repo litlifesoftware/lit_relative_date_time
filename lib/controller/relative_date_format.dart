@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:lit_relative_date_time/lit_relative_date_time.dart';
-import 'package:lit_relative_date_time/localization/all.dart';
-import 'package:lit_relative_date_time/localization/default.dart';
+import 'package:lit_relative_date_time/localizations.dart';
 
 /// [RelativeDateFormat] localizes relative time stamps using the provided [Locale].
 ///

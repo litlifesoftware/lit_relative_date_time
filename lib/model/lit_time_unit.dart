@@ -1,5 +1,3 @@
-import 'package:lit_relative_date_time/lit_relative_date_time.dart';
-
 /// A collection of time units available varying amounts of time Simplifies the localized
 /// string value.
 enum LitTimeUnit {

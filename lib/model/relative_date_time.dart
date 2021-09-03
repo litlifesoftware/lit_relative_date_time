@@ -1,5 +1,5 @@
-import 'package:lit_relative_date_time/lit_relative_date_time.dart';
-import 'package:lit_relative_date_time/controller/relative_date_time_controller.dart';
+import 'package:lit_relative_date_time/models.dart';
+import 'package:lit_relative_date_time/controllers.dart';
 
 /// Controller class to calculate a [TimeDifference] based on two comparable [DateTime] objects.
 ///

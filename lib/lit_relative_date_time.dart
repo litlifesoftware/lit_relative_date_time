@@ -2,18 +2,23 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-
-
-/// A Flutter package to generate relative dates to show differences in time in localized and human-readable format.
+/// A Flutter package to generate relative dates to show differences in time in
+/// localized and human-readable format.
 ///
 ///
 /// To use, import `package:lit_relative_date_time/lit_relative_date_time.dart`.
+///
+
 library lit_relative_date_time;
 
-// Files
-export 'package:lit_relative_date_time/model/time_difference.dart';
-export 'package:lit_relative_date_time/model/lit_time_unit.dart';
-export 'package:lit_relative_date_time/model/constants.dart';
-export 'package:lit_relative_date_time/model/relative_date_time.dart';
-export 'package:lit_relative_date_time/localization/relative_date_format.dart';
-export 'package:lit_relative_date_time/model/relative_date_localization.dart';
+// `models`
+export 'controllers.dart';
+
+// `data`
+export 'data.dart';
+
+// `localizations`
+export 'localizations.dart';
+
+// `models`
+export 'models.dart';
