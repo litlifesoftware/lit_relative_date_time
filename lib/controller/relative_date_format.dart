@@ -28,7 +28,7 @@ class RelativeDateFormat {
   ///
   const RelativeDateFormat(
     this.locale, {
-    this.localizations = formatLocalizations,
+    this.localizations = LOC_ALL,
     this.debug = false,
   });
 
@@ -45,7 +45,7 @@ class RelativeDateFormat {
       if (debug) {
         print("Error: $e");
       }
-      return defaultLocalization;
+      return LOC_DEFAULT;
     }
   }
 
@@ -134,8 +134,8 @@ class RelativeDateFormat {
       return "${_localization.atTheMoment}";
     } else {
       List<String> _words = [];
-      // If the relative date time does describe a date in the past, return the formatting
-      // for past dates.
+      // If the relative date time does describe a date in the past, return the
+      // formatting for past dates.
       if (relativeDateTime.isPast) {
         for (int i = 0; i < _localization.formatOrderPast.length; i++) {
           try {
@@ -152,7 +152,8 @@ class RelativeDateFormat {
           } catch (e) {
             if (debug) {
               const String errorMessage =
-                  "ERROR on formatting prepositionPast array. Please check your localization configuration.";
+                  "ERROR on formatting prepositionPast array." +
+                      "+ " "Please check your localization configuration.";
               print("$PACKAGE_NAME: $errorMessage");
               _words.add(errorMessage);
             }
@@ -175,7 +176,9 @@ class RelativeDateFormat {
           }
         } catch (e) {
           const String errorMessage =
-              "Error on formatting prepositionFuture array. Please check your localization configuration.";
+              "Error on formatting prepositionFuture array." +
+                  " " +
+                  "Please check your localization configuration.";
           if (debug) {
             print("$PACKAGE_NAME: $errorMessage");
           }

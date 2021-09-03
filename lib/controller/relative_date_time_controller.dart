@@ -23,36 +23,36 @@ class RelativeDateTimeController {
     int differenceInMsAbs = differenceInMs.abs();
 
     // If the closest time unit is second
-    if ((differenceInMsAbs < msPerMinute)) {
+    if ((differenceInMsAbs < MS_PER_MINUTE)) {
       return TimeDifference(
-        value: (differenceInMs / msPerSecond).floor(),
+        value: (differenceInMs / MS_PER_SECOND).floor(),
         unit: LitTimeUnit.second,
       );
     }
     // If the closest time unit is minute
-    if ((differenceInMsAbs < msPerHour)) {
+    if ((differenceInMsAbs < MS_PER_HOUR)) {
       return TimeDifference(
-        value: (differenceInMs / msPerMinute).floor(),
+        value: (differenceInMs / MS_PER_MINUTE).floor(),
         unit: LitTimeUnit.minute,
       );
     }
     // If the closest time unit is hour
-    if ((differenceInMsAbs < msPerDay)) {
+    if ((differenceInMsAbs < MS_PER_DAY)) {
       return TimeDifference(
-        value: (differenceInMs / msPerHour).floor(),
+        value: (differenceInMs / MS_PER_HOUR).floor(),
         unit: LitTimeUnit.hour,
       );
     }
     // If the closest time unit is day
-    if ((differenceInMsAbs < msPerYear)) {
+    if ((differenceInMsAbs < MS_PER_YEAR)) {
       return TimeDifference(
-        value: (differenceInMs / msPerDay).floor(),
+        value: (differenceInMs / MS_PER_DAY).floor(),
         unit: LitTimeUnit.day,
       );
     }
     // Else the closest time unit is year
     return TimeDifference(
-      value: (differenceInMs / msPerYear).floor(),
+      value: (differenceInMs / MS_PER_YEAR).floor(),
       unit: LitTimeUnit.year,
     );
   }

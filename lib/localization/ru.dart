@@ -1,10 +1,22 @@
 import 'package:lit_relative_date_time/models.dart';
 
 /// `Russian` localization
-const RelativeDateLocalization localizationsRU = RelativeDateLocalization(
+const RelativeDateLocalization LOC_RU = RelativeDateLocalization(
   languageCode: 'ru',
-  timeUnitsSingular: ['секунду', 'минуту', 'час', 'день', 'год'],
-  timeUnitsPlural: ['секунды', 'минуты', 'часа', 'дня', 'года'],
+  timeUnitsSingular: [
+    'секунду',
+    'минуту',
+    'час',
+    'день',
+    'год',
+  ],
+  timeUnitsPlural: [
+    'секунды',
+    'минуты',
+    'часа',
+    'дня',
+    'года',
+  ],
   prepositionPast: 'назад',
   prepositionFuture: 'через',
   atTheMoment: 'Сейчас',
