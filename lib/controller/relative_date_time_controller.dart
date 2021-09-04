@@ -14,14 +14,27 @@ class RelativeDateTimeController {
   /// other.
   const RelativeDateTimeController(this.dateTime, this.other);
 
+  /// Returns the difference of both date times as a [Duration].
+  Duration get differenceInDuration {
+    if (dateTime.isAfter(other)) {
+      return dateTime.difference(other);
+    } else {
+      return other.difference(dateTime);
+    }
+  }
+
+  /// The difference of both date times. The difference may be negative.
+  int get differenceInMs {
+    return differenceInDuration.inMilliseconds;
+  }
+
+  /// The difference of both date times. The value is always unsigned / abs.
+  int get differenceInMsAbs {
+    return differenceInMs.abs();
+  }
+
   /// Calculates the difference in time and returns a [TimeDifference].
   TimeDifference calculateTimeDifference() {
-    /// The difference of both date times. The difference may be negative.
-    int differenceInMs = dateTime.difference(other).inMilliseconds;
-
-    /// The difference of both date times. The value is always unsigned.
-    int differenceInMsAbs = differenceInMs.abs();
-
     // If the closest time unit is second
     if ((differenceInMsAbs < MS_PER_MINUTE)) {
       return TimeDifference(
