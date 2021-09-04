@@ -1,3 +1,4 @@
+import 'package:lit_relative_date_time/controllers.dart';
 import 'package:lit_relative_date_time/models.dart';
 
 /// A `model` class describing a difference in time of two time stamps.
@@ -17,21 +18,21 @@ class TimeDifference {
     required this.unit,
   });
 
-  /// States whether the [TimeDifference]'unit contains the smallest measurable
-  /// value available ([LitTimeUnit.second]).
+  /// States whether the difference unit is `second`.
   bool get isSmallestUnit {
-    return unit == LitTimeUnit.second;
+    final controller = TimeDifferenceController(this);
+    return controller.isSmallestUnit;
   }
 
-  /// States wheter the [TimeDifference]'s value is zero. If so, the difference
-  /// is invalid and cannot be used for measuring accurate relative dates.
+  /// States whether the difference value is `0`.
   bool get isZero {
-    return value == 0;
+    final controller = TimeDifferenceController(this);
+    return controller.isZero;
   }
 
-  /// States whether to localized the corresponding [TimeDifference]'s time unit
-  /// in singular form.
+  /// States whether the difference value is `1`.
   bool get isSingular {
-    return value == 1;
+    final controller = TimeDifferenceController(this);
+    return controller.isSingular;
   }
 }
