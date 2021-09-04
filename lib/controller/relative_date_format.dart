@@ -165,7 +165,7 @@ class RelativeDateFormat {
           for (int i = 0; i < _localization.formatOrderFuture.length; i++) {
             if (_localization.formatOrderFuture[i] ==
                 FormatComponent.preposition) {
-              _words.add(_localization.prepositionPast);
+              _words.add(_localization.prepositionFuture);
             }
             if (_localization.formatOrderFuture[i] == FormatComponent.value) {
               _words.add(timeValue);

@@ -15,12 +15,11 @@ class RelativeDateTimeController {
   const RelativeDateTimeController(this.dateTime, this.other);
 
   /// Returns the difference of both date times as a [Duration].
+  ///
+  /// The [dateTime] will always be used as base, when subtracting [other] from
+  /// [dateTime].
   Duration get differenceInDuration {
-    if (dateTime.isAfter(other)) {
-      return dateTime.difference(other);
-    } else {
-      return other.difference(dateTime);
-    }
+    return dateTime.difference(other);
   }
 
   /// The difference of both date times. The difference may be negative.
