@@ -22,3 +22,6 @@ export 'localizations.dart';
 
 // `models`
 export 'models.dart';
+
+// `widgets`
+export 'widgets.dart';
