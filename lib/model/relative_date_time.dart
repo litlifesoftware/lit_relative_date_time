@@ -23,8 +23,13 @@ class RelativeDateTime {
     return controller.calculateTimeDifference();
   }
 
-  /// States whether the dates are approximating each other to much to measure
-  /// a valid [TimeDifference].
+  /// Returns the calculated difference in time as a [Duration].
+  Duration get differenceInDuration {
+    final controller = RelativeDateTimeController(dateTime, other);
+    return controller.differenceInDuration;
+  }
+
+  /// States whether the difference is immeasurable (no difference).
   bool get isNow {
     return timeDifference.isZero && timeDifference.isSmallestUnit;
   }
