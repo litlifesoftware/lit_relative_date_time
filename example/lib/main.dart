@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'LitRelativeDateTime',
       // Set the localization delegates you want to use.
       localizationsDelegates: [
@@ -45,6 +46,18 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
+  void _add() {
+    setState(() {
+      _lastPressed = _lastPressed!.add(Duration(seconds: 10));
+    });
+  }
+
+  void _subtract() {
+    setState(() {
+      _lastPressed = _lastPressed!.subtract(Duration(seconds: 10));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,13 +87,31 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: _lastPressed != null
-                  ? AnimatedRelativeDateTimeBuilder(
-                      date: _lastPressed!,
-                      builder: (relDateTime, formatted) {
-                        return Text(
-                          formatted,
-                        );
-                      },
+                  ? Column(
+                      children: [
+                        AnimatedRelativeDateTimeBuilder(
+                          date: _lastPressed!,
+                          builder: (relDateTime, formatted) {
+                            return Text(
+                              formatted,
+                            );
+                          },
+                        ),
+                        SizedBox(height: 4.0),
+                        ElevatedButton(
+                          onPressed: _add,
+                          child: Text(
+                            "add ten seconds".toUpperCase(),
+                          ),
+                        ),
+                        SizedBox(height: 4.0),
+                        ElevatedButton(
+                          onPressed: _subtract,
+                          child: Text(
+                            "subtract ten seconds".toUpperCase(),
+                          ),
+                        )
+                      ],
                     )
                   : Text(
                       "Not Pressed Yet",
