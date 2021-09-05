@@ -1,12 +1,18 @@
-# Lit Relative Date Time
+# LitRelativeDateTime
 
-A Flutter package to generate relative dates to show differences in time in localized and	human-readable format.
+> [![leitmotif][leitmotif_badge_pub]][leitmotif] [![pub points][leitmotif_badge_pub_points]][leitmotif_pub_points]
+
+by [LitLifeSoftware](https://github.com/litlifesoftware)
+
+## What is LitRelativeDateTime?
+
+LitRelativeDateTime is a Flutter package to generate relative dates to show differences in time. Theses dates are formatted in a localized and human-readable format.
 
 ## Screenshots
 
-| Difference in seconds (eng. locale)                                                        | Difference in seconds (ger. locale)                                                        |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| ![Difference in seconds (eng. locale)](assets/img/Lit_Relative_Date_Time_Screenshot_1.jpg) | ![Difference in seconds (ger. locale)](assets/img/Lit_Relative_Date_Time_Screenshot_2.jpg) |
+| English Locale          | German Locale          |
+| ------------------ | ------------------ |
+| ![1][screenshot_1] | ![2][screenshot_2] |
 
 ## How it works
 
@@ -84,6 +90,21 @@ an argument in order to format the `RelativeDateTime` to display the string on e
 Text(relativeDateFormatter.format(relativeDateTime))
 ```
 
+There is an `AnimatedBuilder` implementation (`AnimatedRelativeDateTimeBuilder`) available to display `RelativeDateTime` values relative
+to the current timestamp. The animation renders every second to e.g allow updating the builder
+every past second.
+
+```dart
+AnimatedRelativeDateTimeBuilder(
+    date: _lastPressed!,
+    builder: (relDateTime, formatted) {
+      return Text(
+        formatted,
+      );
+    },
+  );
+```
+
 The Example app can provide further details on implementing relative dates.
 
 ## Getting Started with Flutter
@@ -94,9 +115,16 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Example
 
-The `example` folder contains an example app demonstrating the most basic implementation using a local JSON asset file.
+The `example` folder contains an example app demonstrating how LitRelativeDateTime could implemented.
 
 ## License
 
 The source code of this repository is distributed under the
 **BSD 3-Clause** license as specified in the `LICENSE` file.
+
+[screenshot_1]: assets/img/Screenshot_1.png
+[screenshot_2]: assets/img/Screenshot_2.png
+[leitmotif]: https://pub.dev/packages/lit_relative_date_time
+[leitmotif_pub_points]: https://pub.dev/packages/lit_relative_date_time/score
+[leitmotif_badge_pub]: https://img.shields.io/pub/v/lit_relative_date_time.svg
+[leitmotif_badge_pub_points]: https://badges.bar/lit_relative_date_time/pub%20points

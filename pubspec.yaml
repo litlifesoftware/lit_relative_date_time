@@ -1,7 +1,9 @@
 name: lit_relative_date_time
-description: A Flutter package to generate relative dates to show differences in time in localized and human-readable format.
+description: >-
+  A Flutter package to generate relative dates to show differences in time in localized and human-readable format.
+repository: https://www.github.com/litlifesoftware/lit_relative_date_time
+issue_tracker: https://github.com/litlifesoftware/lit_relative_date_time/issues
 version: 0.0.2
-homepage: https://www.github.com/litlifesoftware/lit_relative_date_time
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
