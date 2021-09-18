@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   ? Column(
                       children: [
                         AnimatedRelativeDateTimeBuilder(
+                          animateOpacity: true,
                           date: _lastPressed!,
                           builder: (relDateTime, formatted) {
                             return Text(
