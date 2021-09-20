@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Add `animateOpacity` option on `AnimatedRelativeDateTimeBuilder` in order to render using an opacity animation.
+
 ## 1.0.0
 
 - Add `RelativeDateTimeFormatBuilder` to allow an simpler API.
