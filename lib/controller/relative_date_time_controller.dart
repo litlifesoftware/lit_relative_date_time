@@ -37,51 +37,57 @@ class RelativeDateTimeController {
   /// Calculates the difference in time and returns a [TimeDifference].
   TimeDifference calculateTimeDifference() {
     // If the closest time unit is second
-    if (differenceMsAbs < MS_PER_MINUTE) {
+    if (differenceMsAbs < MS_PER_MINUTE &&
+        (differenceMsAbs / MS_PER_SECOND).abs().round() != SEC_PER_MIN) {
       return TimeDifference(
-        value: (differenceMs / MS_PER_SECOND).floor(),
+        value: (differenceMs / MS_PER_SECOND).round(),
         unit: LitTimeUnit.second,
       );
     }
     // If the closest time unit is minute
-    if (differenceMsAbs < MS_PER_HOUR) {
+    if (differenceMsAbs < MS_PER_HOUR &&
+        (differenceMsAbs / MS_PER_MINUTE).abs().round() != MIN_PER_HR) {
       return TimeDifference(
-        value: (differenceMs / MS_PER_MINUTE).floor(),
+        value: (differenceMs / MS_PER_MINUTE).round(),
         unit: LitTimeUnit.minute,
       );
     }
     // If the closest time unit is hour
-    if (differenceMsAbs < MS_PER_DAY) {
+    if (differenceMsAbs < MS_PER_DAY &&
+        (differenceMsAbs / MS_PER_HOUR).abs().round() != HR_PER_DAY) {
       return TimeDifference(
-        value: (differenceMs / MS_PER_HOUR).floor(),
+        value: (differenceMs / MS_PER_HOUR).round(),
         unit: LitTimeUnit.hour,
       );
     }
     // If the closest time unit is day
-    if (differenceMsAbs < MS_PER_WEEK) {
+    if (differenceMsAbs < MS_PER_WEEK &&
+        (differenceMsAbs / MS_PER_DAY).abs().round() != DAYS_PER_WK) {
       final res = differenceMs / MS_PER_DAY;
       return TimeDifference(
-        value: res.floor(),
+        value: (differenceMs / MS_PER_DAY).round(),
         unit: LitTimeUnit.day,
       );
     }
     // If the closest time unit is week
-    if (differenceMsAbs < MS_PER_MONTH) {
+    if (differenceMsAbs < MS_PER_MONTH &&
+        (differenceMsAbs / MS_PER_WEEK).abs().round() != WKS_PER_MNTH) {
       return TimeDifference(
-        value: (differenceMs / MS_PER_WEEK).floor(),
+        value: (differenceMs / MS_PER_WEEK).round(),
         unit: LitTimeUnit.week,
       );
     }
-    // If the closest time unit is week
-    if (differenceMsAbs < MS_PER_YEAR) {
+    // If the closest time unit is month
+    if (differenceMsAbs < MS_PER_YEAR &&
+        (differenceMsAbs / MS_PER_MONTH).abs().round() != MNTHS_PER_YR) {
       return TimeDifference(
-        value: (differenceMs / MS_PER_MONTH).floor(),
+        value: (differenceMs / MS_PER_MONTH).round(),
         unit: LitTimeUnit.month,
       );
     }
     // Else the closest time unit is year
     return TimeDifference(
-      value: (differenceMs / MS_PER_YEAR).floor(),
+      value: (differenceMs / MS_PER_YEAR).round(),
       unit: LitTimeUnit.year,
     );
   }

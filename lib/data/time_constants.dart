@@ -23,3 +23,21 @@ const double MS_PER_MONTH = 2.628e+9;
 
 /// The miliseconds per year `3.154e+10`.
 const double MS_PER_YEAR = 3.154e+10;
+
+/// `seconds` per `minute`
+const int SEC_PER_MIN = 60;
+
+/// `minutes` per `hour`
+const int MIN_PER_HR = 60;
+
+/// `hours` per `day`
+const int HR_PER_DAY = 24;
+
+/// `days` per `week`
+const int DAYS_PER_WK = 7;
+
+/// `weeks` per `month`
+const int WKS_PER_MNTH = 4;
+
+/// `months` per `year`
+const int MNTHS_PER_YR = 12;
