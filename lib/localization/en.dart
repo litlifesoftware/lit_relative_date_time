@@ -8,6 +8,8 @@ const RelativeDateLocalization LOC_EN = RelativeDateLocalization(
     'minute',
     'hour',
     'day',
+    'week',
+    'month',
     'year',
   ],
   timeUnitsPlural: [
@@ -15,6 +17,8 @@ const RelativeDateLocalization LOC_EN = RelativeDateLocalization(
     'minutes',
     'hours',
     'days',
+    'weeks',
+    'months',
     'years',
   ],
   prepositionPast: 'ago',

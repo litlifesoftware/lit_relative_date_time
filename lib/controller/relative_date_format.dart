@@ -95,10 +95,22 @@ class RelativeDateFormat {
             ? _timeUnitsSingular[3]
             : _timeUnitsPlural[3];
 
-      default:
+      case LitTimeUnit.week:
         return _isSingular(relativeDateTime)
             ? _timeUnitsSingular[4]
             : _timeUnitsPlural[4];
+
+      case LitTimeUnit.month:
+        return _isSingular(relativeDateTime)
+            ? _timeUnitsSingular[5]
+            : _timeUnitsPlural[5];
+
+      case LitTimeUnit.year:
+        return _isSingular(relativeDateTime)
+            ? _timeUnitsSingular[6]
+            : _timeUnitsPlural[6];
+      default:
+        throw Exception("This 'LitTimeUnit' type has not been implemented.");
     }
   }
 

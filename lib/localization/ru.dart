@@ -8,6 +8,8 @@ const RelativeDateLocalization LOC_RU = RelativeDateLocalization(
     'минуту',
     'час',
     'день',
+    'неделю',
+    'месяц',
     'год',
   ],
   timeUnitsPlural: [
@@ -15,6 +17,8 @@ const RelativeDateLocalization LOC_RU = RelativeDateLocalization(
     'минуты',
     'часа',
     'дня',
+    'недели',
+    'месяца',
     'года',
   ],
   prepositionPast: 'назад',

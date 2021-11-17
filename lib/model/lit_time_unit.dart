@@ -1,5 +1,8 @@
 /// A collection of all available time units.
 enum LitTimeUnit {
+  /// A milisecond
+  milisecond,
+
   /// A second
   second,
 
@@ -11,6 +14,9 @@ enum LitTimeUnit {
 
   /// An hour
   day,
+
+  /// A week
+  week,
 
   /// A month
   month,

@@ -1,5 +1,4 @@
-/// A list of `controller` classes used to achieve certain functionality of this
-/// package.
+/// A list of `controller` classes used to achive certain features.
 library controllers;
 
 export 'controller/relative_date_format.dart';

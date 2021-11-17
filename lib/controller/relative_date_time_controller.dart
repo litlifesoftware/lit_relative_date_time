@@ -22,49 +22,66 @@ class RelativeDateTimeController {
     return dateTime.difference(other);
   }
 
-  /// The difference of both date times. The difference may be negative.
-  int get differenceInMs {
+  /// The difference of both date times in `miliseconds`.
+  ///
+  /// The value may be negative.
+  int get differenceMs {
     return differenceInDuration.inMilliseconds;
   }
 
-  /// The difference of both date times. The value is always unsigned / abs.
-  int get differenceInMsAbs {
-    return differenceInMs.abs();
+  /// The absolute difference of both date times in `miliseconds`.
+  int get differenceMsAbs {
+    return differenceMs.abs();
   }
 
   /// Calculates the difference in time and returns a [TimeDifference].
   TimeDifference calculateTimeDifference() {
     // If the closest time unit is second
-    if ((differenceInMsAbs < MS_PER_MINUTE)) {
+    if (differenceMsAbs < MS_PER_MINUTE) {
       return TimeDifference(
-        value: (differenceInMs / MS_PER_SECOND).floor(),
+        value: (differenceMs / MS_PER_SECOND).floor(),
         unit: LitTimeUnit.second,
       );
     }
     // If the closest time unit is minute
-    if ((differenceInMsAbs < MS_PER_HOUR)) {
+    if (differenceMsAbs < MS_PER_HOUR) {
       return TimeDifference(
-        value: (differenceInMs / MS_PER_MINUTE).floor(),
+        value: (differenceMs / MS_PER_MINUTE).floor(),
         unit: LitTimeUnit.minute,
       );
     }
     // If the closest time unit is hour
-    if ((differenceInMsAbs < MS_PER_DAY)) {
+    if (differenceMsAbs < MS_PER_DAY) {
       return TimeDifference(
-        value: (differenceInMs / MS_PER_HOUR).floor(),
+        value: (differenceMs / MS_PER_HOUR).floor(),
         unit: LitTimeUnit.hour,
       );
     }
     // If the closest time unit is day
-    if ((differenceInMsAbs < MS_PER_YEAR)) {
+    if (differenceMsAbs < MS_PER_WEEK) {
+      final res = differenceMs / MS_PER_DAY;
       return TimeDifference(
-        value: (differenceInMs / MS_PER_DAY).floor(),
+        value: res.floor(),
         unit: LitTimeUnit.day,
+      );
+    }
+    // If the closest time unit is week
+    if (differenceMsAbs < MS_PER_MONTH) {
+      return TimeDifference(
+        value: (differenceMs / MS_PER_WEEK).floor(),
+        unit: LitTimeUnit.week,
+      );
+    }
+    // If the closest time unit is week
+    if (differenceMsAbs < MS_PER_YEAR) {
+      return TimeDifference(
+        value: (differenceMs / MS_PER_MONTH).floor(),
+        unit: LitTimeUnit.month,
       );
     }
     // Else the closest time unit is year
     return TimeDifference(
-      value: (differenceInMs / MS_PER_YEAR).floor(),
+      value: (differenceMs / MS_PER_YEAR).floor(),
       unit: LitTimeUnit.year,
     );
   }

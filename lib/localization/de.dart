@@ -8,6 +8,8 @@ const RelativeDateLocalization LOC_DE = RelativeDateLocalization(
     'Minute',
     'Stunde',
     'Tag',
+    'Woche',
+    'Monat',
     'Jahr',
   ],
   timeUnitsPlural: [
@@ -15,6 +17,8 @@ const RelativeDateLocalization LOC_DE = RelativeDateLocalization(
     'Minuten',
     'Stunden',
     'Tagen',
+    'Wochen',
+    'Monaten',
     'Jahren',
   ],
   prepositionPast: 'vor',
