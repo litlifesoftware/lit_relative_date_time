@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       // Set the supported locales according to the localizations you have
-      // implmented on your application.
+      // implemented on your application.
       supportedLocales: [
         const Locale('en'), // English, no country code
         const Locale('de'), // German, no country code
@@ -52,9 +52,57 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
+  void _addMinute() {
+    setState(() {
+      _lastPressed = _lastPressed!.add(Duration(minutes: 1));
+    });
+  }
+
+  void _addHour() {
+    setState(() {
+      _lastPressed = _lastPressed!.add(Duration(hours: 1));
+    });
+  }
+
+  void _addDay() {
+    setState(() {
+      _lastPressed = _lastPressed!.add(Duration(days: 1));
+    });
+  }
+
+  void _addWeek() {
+    setState(() {
+      _lastPressed = _lastPressed!.add(Duration(days: 7));
+    });
+  }
+
   void _subtract() {
     setState(() {
       _lastPressed = _lastPressed!.subtract(Duration(seconds: 10));
+    });
+  }
+
+  void _subtractMinute() {
+    setState(() {
+      _lastPressed = _lastPressed!.subtract(Duration(minutes: 1));
+    });
+  }
+
+  void _subtractHour() {
+    setState(() {
+      _lastPressed = _lastPressed!.subtract(Duration(hours: 1));
+    });
+  }
+
+  void _subtractDay() {
+    setState(() {
+      _lastPressed = _lastPressed!.subtract(Duration(days: 1));
+    });
+  }
+
+  void _subtractWeek() {
+    setState(() {
+      _lastPressed = _lastPressed!.subtract(Duration(days: 7));
     });
   }
 
@@ -100,16 +148,64 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         ),
                         SizedBox(height: 4.0),
                         ElevatedButton(
+                          onPressed: _addWeek,
+                          child: Text(
+                            "add one week".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _addDay,
+                          child: Text(
+                            "add one day".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _addHour,
+                          child: Text(
+                            "add one hr".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _addMinute,
+                          child: Text(
+                            "add one min".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
                           onPressed: _add,
                           child: Text(
-                            "add ten seconds".toUpperCase(),
+                            "add ten secs".toUpperCase(),
                           ),
                         ),
                         SizedBox(height: 4.0),
                         ElevatedButton(
                           onPressed: _subtract,
                           child: Text(
-                            "subtract ten seconds".toUpperCase(),
+                            "sub ten secs".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _subtractMinute,
+                          child: Text(
+                            "sub one min".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _subtractHour,
+                          child: Text(
+                            "sub one hr".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _subtractDay,
+                          child: Text(
+                            "sub one day".toUpperCase(),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: _subtractWeek,
+                          child: Text(
+                            "sub one week".toUpperCase(),
                           ),
                         )
                       ],
