@@ -17,25 +17,18 @@ class RelativeDateTime {
     required this.other,
   });
 
+  RelativeDateTimeController get _controller =>
+      RelativeDateTimeController(dateTime, other);
+
   /// Returns the calculated [TimeDifference].
-  TimeDifference get timeDifference {
-    final controller = RelativeDateTimeController(dateTime, other);
-    return controller.calculateTimeDifference();
-  }
+  TimeDifference get timeDifference => _controller.timeDifference;
 
   /// Returns the calculated difference in time as a [Duration].
-  Duration get differenceInDuration {
-    final controller = RelativeDateTimeController(dateTime, other);
-    return controller.differenceInDuration;
-  }
+  Duration get differenceInDuration => _controller.differenceInDuration;
 
   /// States whether the difference is immeasurable (no difference).
-  bool get isNow {
-    return timeDifference.isZero && timeDifference.isSmallestUnit;
-  }
+  bool get isNow => _controller.isNow;
 
   /// States whether the [other] date time is in the past.
-  bool get isPast {
-    return timeDifference.value > 0;
-  }
+  bool get isPast => _controller.isPast;
 }
