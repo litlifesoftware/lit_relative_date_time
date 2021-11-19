@@ -17,8 +17,9 @@ class RelativeDateTime {
     required this.other,
   });
 
+  /// Returns a [RelativeDateTimeController] based on this relative date time.
   RelativeDateTimeController get _controller =>
-      RelativeDateTimeController(dateTime, other);
+      RelativeDateTimeController(this);
 
   /// Returns the calculated [TimeDifference].
   TimeDifference get timeDifference => _controller.timeDifference;

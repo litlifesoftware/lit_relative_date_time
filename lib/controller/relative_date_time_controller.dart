@@ -2,25 +2,20 @@ import 'package:lit_relative_date_time/data.dart';
 import 'package:lit_relative_date_time/models.dart';
 
 /// A `controller` class to calculate custom differences in time of two
-/// provided [DateTime] objects.
+/// [DateTime] objects include on the provided relative date time.
 ///
 class RelativeDateTimeController {
-  final DateTime dateTime;
-  final DateTime other;
+  final RelativeDateTime relativeDateTime;
 
   /// Creates a [RelativeDateTimeController].
-  ///
-  /// [dateTime] and [other] are the dates times that are set relative to each
-  /// other.
-  const RelativeDateTimeController(this.dateTime, this.other);
+  const RelativeDateTimeController(this.relativeDateTime);
 
   /// Returns the difference of both date times as a [Duration].
   ///
   /// The [dateTime] will always be used as base, when subtracting [other] from
   /// [dateTime].
-  Duration get differenceInDuration {
-    return dateTime.difference(other);
-  }
+  Duration get differenceInDuration =>
+      relativeDateTime.dateTime.difference(relativeDateTime.other);
 
   /// The difference of both date times in `miliseconds`.
   ///
