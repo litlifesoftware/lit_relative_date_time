@@ -18,21 +18,15 @@ class TimeDifference {
     required this.unit,
   });
 
+  /// Returns a [TimeDifferenceController] based on `this` time difference.
+  TimeDifferenceController get _controller => TimeDifferenceController(this);
+
   /// States whether the difference unit is `second`.
-  bool get isSmallestUnit {
-    final controller = TimeDifferenceController(this);
-    return controller.isSmallestUnit;
-  }
+  bool get isSmallestUnit => _controller.isSmallestUnit;
 
   /// States whether the difference value is `0`.
-  bool get isZero {
-    final controller = TimeDifferenceController(this);
-    return controller.isZero;
-  }
+  bool get isZero => _controller.isZero;
 
   /// States whether the difference value is `1`.
-  bool get isSingular {
-    final controller = TimeDifferenceController(this);
-    return controller.isSingular;
-  }
+  bool get isSingular => _controller.isSingular;
 }

@@ -10,17 +10,11 @@ class TimeDifferenceController {
   const TimeDifferenceController(this.timeDifference);
 
   /// States whether the difference unit is `second`.
-  bool get isSmallestUnit {
-    return timeDifference.unit == LitTimeUnit.second;
-  }
+  bool get isSmallestUnit => timeDifference.unit == LitTimeUnit.second;
 
   /// States whether the difference value is `0`.
-  bool get isZero {
-    return timeDifference.value.abs() == 0;
-  }
+  bool get isZero => timeDifference.value.abs() == 0;
 
   /// States whether the difference value is `1`.
-  bool get isSingular {
-    return timeDifference.value.abs() == 1;
-  }
+  bool get isSingular => timeDifference.value.abs() == 1;
 }
