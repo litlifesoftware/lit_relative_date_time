@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Add `week` and `month` time units.
+- Fix time difference calculation on future dates.
+- Refactor source code.
+
 ## 1.1.0
 
 - Add `animateOpacity` option on `AnimatedRelativeDateTimeBuilder` in order to render using an opacity animation.
