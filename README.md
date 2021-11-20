@@ -10,7 +10,7 @@ LitRelativeDateTime is a Flutter package to generate relative dates to show diff
 
 ## Screenshots
 
-| English Locale          | German Locale          |
+| English Locale     | German Locale      |
 | ------------------ | ------------------ |
 | ![1][screenshot_1] | ![2][screenshot_2] |
 
@@ -58,29 +58,40 @@ If you want to provide your own Localizations, you can do so by passing the opti
 argument, which contains a list of `RelativeDateLocalization` objects:
 
 ```dart
-RelativeDateFormat _relativeDateFormatter = RelativeDateFormat(
-      Localizations.localeOf(context),
-      localizations: [
-        RelativeDateLocalization(
-          languageCode: 'en',
-          timeUnitsSingular: ['second', 'minute', 'hour', 'day', 'year'],
-          timeUnitsPlural: ['seconds', 'minutes', 'hours', 'days', 'years'],
-          prepositionPast: 'ago',
-          prepositionFuture: 'in',
-          atTheMoment: 'now',
-          formatOrderPast: [
-            FormatComponent.value,
-            FormatComponent.unit,
-            FormatComponent.preposition
-          ],
-          formatOrderFuture: [
-            FormatComponent.preposition,
-            FormatComponent.value,
-            FormatComponent.unit,
-          ],
-        )
-      ],
-    );
+RelativeDateLocalization(
+  languageCode: 'en',
+  timeUnitsSingular: [
+    'second',
+    'minute',
+    'hour',
+    'day',
+    'week',
+    'month',
+    'year',
+  ],
+  timeUnitsPlural: [
+    'seconds',
+    'minutes',
+    'hours',
+    'days',
+    'weeks',
+    'months',
+    'years',
+  ],
+  prepositionPast: 'ago',
+  prepositionFuture: 'in',
+  atTheMoment: 'now',
+  formatOrderPast: [
+    FormatComponent.value,
+    FormatComponent.unit,
+    FormatComponent.preposition
+  ],
+  formatOrderFuture: [
+    FormatComponent.preposition,
+    FormatComponent.value,
+    FormatComponent.unit,
+  ],
+);
 ```
 
 Now the `RelativeDateFormat`'s `format()` method can be called, which takes the `RelativeDateTime` as
@@ -91,7 +102,7 @@ Text(relativeDateFormatter.format(relativeDateTime))
 ```
 
 There is an `AnimatedBuilder` implementation (`AnimatedRelativeDateTimeBuilder`) available to display `RelativeDateTime` values relative
-to the current timestamp. The animation renders every second to e.g allow updating the builder
+to the current timestamp. The animation renders every second to allow updating the builder
 every past second.
 
 ```dart
